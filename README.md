@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+# 🌸 诗意空间 (Poem Site)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个基于 React 19 构建的极简、高颜值的中国传统诗词展示应用。
 
-Currently, two official plugins are available:
+👉 **[在线预览地址](https://bokeshiling.github.io/poet-site/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ 特性
 
-## React Compiler
+- **唯美视觉**：采用暗色系设计，配合动态光晕背景与毛玻璃特效，营造宁静的阅读氛围。
+- **随机偶遇**：点击页面任意位置，即可随机切换下一首精选诗词。
+- **动效优雅**：内置丝滑的淡入淡出切换效果，提升交互体验。
+- **持久收藏**：支持收藏喜爱的诗句，并利用 `localStorage` 实现本地持久化存储。
+- **极致响应**：完美适配手机、平板与桌面端屏幕。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ 技术栈
 
-## Expanding the ESLint configuration
+- **框架**: [React 19](https://react.dev/)
+- **构建**: [Vite 8](https://vitejs.dev/)
+- **语言**: [TypeScript](https://www.typescriptlang.org/)
+- **部署**: [GitHub Actions](https://github.com/features/actions)
+- **包管理**: [pnpm](https://pnpm.io/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 快速开始
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 本地开发
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. 克隆仓库:
+   ```bash
+   git clone https://github.com/bokeshiling/poet-site.git
+   ```
+2. 安装依赖:
+   ```bash
+   pnpm install
+   ```
+3. 启动项目:
+   ```bash
+   pnpm dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 自动部署
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+项目已集成 GitHub Actions。只需将代码推送到 `main` 分支，即可自动触发构建并部署到 GitHub Pages。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📜 许可证
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+MIT License
