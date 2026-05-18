@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build_site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+          cache-dependency-path: my-react-app/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: my-react-app
+
+      - name: Build
+        run: pnpm run build
+        working-directory: my-react-app
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # this should match the `outDir` in vite.config.ts, default is `dist`
+          path: 'my-react-app/dist/'
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
