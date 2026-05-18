@@ -1,0 +1,251 @@
+/* ====== 全局重置与基础 ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family:
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: #0b0c10;
+  color: #e2e2e2;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ====== 页面容器 ====== */
+.poem-page {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* ====== 背景氛围光 ====== */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  pointer-events: none;
+  animation: float 10s ease-in-out infinite alternate;
+}
+
+.glow-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25), transparent 70%);
+  top: -10%;
+  left: -5%;
+  animation-delay: 0s;
+}
+
+.glow-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.18), transparent 70%);
+  bottom: -8%;
+  right: -5%;
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(30px, -20px) scale(1.08);
+  }
+}
+
+/* ====== 诗词卡片 ====== */
+.poem-container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.poem-card {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 64px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  max-width: 680px;
+  width: 90vw;
+}
+
+.poem-card.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.poem-card.fade-out {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* 朝代标签 */
+.poem-dynasty {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* 诗句 */
+.poem-content {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 24px;
+  word-break: keep-all;
+}
+
+/* 作者 */
+.poem-author {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 1.5px;
+}
+
+/* ====== 收藏按钮 ====== */
+.favorite-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.favorite-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.55);
+  transform: scale(1.1);
+}
+
+.favorite-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.favorite-btn.active {
+  color: #f43f5e;
+  background: rgba(244, 63, 94, 0.12);
+}
+
+.favorite-btn.active svg {
+  fill: #f43f5e;
+  stroke: #f43f5e;
+}
+
+/* ====== 提示文字 ====== */
+.hint {
+  margin-top: 32px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hint.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====== 底部 ====== */
+.page-footer {
+  position: fixed;
+  bottom: 24px;
+  z-index: 1;
+}
+
+.fav-count {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 1px;
+}
+
+/* ====== 响应式 ====== */
+@media (max-width: 640px) {
+  .poem-card {
+    padding: 40px 32px;
+    border-radius: 20px;
+  }
+
+  .poem-content {
+    font-size: 24px;
+    line-height: 1.65;
+    letter-spacing: 1.5px;
+  }
+
+  .poem-dynasty {
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  .poem-author {
+    font-size: 14px;
+  }
+
+  .glow-1 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .glow-2 {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .poem-content {
+    font-size: 38px;
+  }
+}
