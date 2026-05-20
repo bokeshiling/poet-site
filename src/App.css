@@ -133,6 +133,7 @@ body {
   color: rgba(255, 255, 255, 0.92);
   margin: 0 0 24px;
   word-break: keep-all;
+  white-space: pre-line;
 }
 
 /* 作者 */
